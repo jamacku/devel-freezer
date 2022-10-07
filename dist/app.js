@@ -7,6 +7,70 @@ import { Config } from './config';
 const app = (probot) => {
     probot.on(events.pull_request, async (context) => {
         const config = await Config.getConfig(context);
+        // TODO: Make error more useful ; currently:
+        // ! {'0': {
+        //       target: {
+        //         _policy: [
+        //           {
+        //             _tags: [ '-rc\\d+$' ],
+        //             _feedback: { _freezedState: '🥶\n', _unFreezedState: '😎\n' }
+        //           },
+        //           {
+        //             _tags: [ 'alpha', 'beta' ],
+        //             _feedback: { _freezedState: 'This is No-No\n' }
+        //           }
+        //         ]
+        //       },
+        //       value: [
+        //         {
+        //           _tags: [ '-rc\\d+$' ],
+        //           _feedback: { _freezedState: '🥶\n', _unFreezedState: '😎\n' }
+        //         },
+        //         {
+        //           _tags: [ 'alpha', 'beta' ],
+        //           _feedback: { _freezedState: 'This is No-No\n' }
+        //         }
+        //       ],
+        //       property: '_policy',
+        //       children: [
+        //         {
+        //           target: [
+        //             {
+        //               _tags: [ '-rc\\d+$' ],
+        //               _feedback: { _freezedState: '🥶\n', _unFreezedState: '😎\n' }
+        //             },
+        //             {
+        //               _tags: [ 'alpha', 'beta' ],
+        //               _feedback: { _freezedState: 'This is No-No\n' }
+        //             }
+        //           ],
+        //           value: {
+        //             _tags: [ 'alpha', 'beta' ],
+        //             _feedback: { _freezedState: 'This is No-No\n' }
+        //           },
+        //           property: '1',
+        //           children: [
+        //             {
+        //               target: {
+        //                 _tags: [ 'alpha', 'beta' ],
+        //                 _feedback: { _freezedState: 'This is No-No\n' }
+        //               },
+        //               value: { _freezedState: 'This is No-No\n' },
+        //               property: '_feedback',
+        //               children: [
+        //                 {
+        //                   target: { _freezedState: 'This is No-No\n' },
+        //                   property: '_unFreezedState',
+        //                   children: [],
+        //                   constraints: { isString: '_unFreezedState must be a string' }
+        //                 }
+        //               ]
+        //             }
+        //           ]
+        //         }
+        //       ]
+        //     }
+        //   }
         await validateOrReject(config);
         if (!config) {
             error(`Missing configuration. Please setup 'devel-freezer' action using 'development-freeze.yml' file.`);

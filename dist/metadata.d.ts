@@ -3,7 +3,7 @@
  */
 import { Context } from 'probot';
 export declare function getMetadata(key: string, context: Context): Promise<any>;
-export declare function setMetadata(key: string, value: string, context: Context, issueNumber?: number): Promise<import("@octokit/types").OctokitResponse<{
+export declare function setMetadata(key: string, value: string, context: Context, issueNumber?: number): Promise<import("@octokit/plugin-paginate-rest/dist-types/types").OctokitResponse<{
     id: number;
     node_id: string;
     url: string;
