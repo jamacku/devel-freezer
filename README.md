@@ -71,7 +71,7 @@ jobs:
 
     permissions:
       # only required for workflows in private repositories
-      actions: read
+      actions: write
       contents: read
 
     steps:

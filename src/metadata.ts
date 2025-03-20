@@ -1,6 +1,6 @@
 import { getInput } from '@actions/core';
 import { context } from '@actions/github';
-import MetadataController from 'issue-metadata';
+import MetadataController from 'artifact-metadata';
 import { z } from 'zod';
 
 type MetadataObject = {

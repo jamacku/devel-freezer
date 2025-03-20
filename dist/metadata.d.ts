@@ -1,4 +1,4 @@
-import MetadataController from 'issue-metadata';
+import MetadataController from 'artifact-metadata';
 type MetadataObject = {
     tag: string | undefined;
     commentID: string | undefined;
